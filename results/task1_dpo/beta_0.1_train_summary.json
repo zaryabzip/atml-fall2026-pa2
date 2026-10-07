@@ -1,0 +1,9 @@
+{
+  "run_name": "beta_0.1",
+  "beta": 0.1,
+  "examples": 600,
+  "optimizer_steps": 38,
+  "wall_clock_s": 9174.401979542046,
+  "peak_vram_gb": null,
+  "output": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task1_dpo/beta_ablation/beta_0.1"
+}

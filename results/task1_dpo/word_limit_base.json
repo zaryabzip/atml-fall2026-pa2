@@ -1,0 +1,97 @@
+{
+  "summary": {
+    "compliance_rate": 0.6,
+    "mean_words": 41.0,
+    "mean_overshoot_ratio": 1.1391507936507934,
+    "words_mean": 41.0,
+    "words_std": 17.320508075688775,
+    "words_median": 38.0,
+    "words_iqr": 10.75,
+    "length_tokens_mean": 48.3,
+    "length_tokens_std": 20.33740396412482,
+    "length_tokens_median": 46.0,
+    "length_tokens_iqr": 15.5
+  },
+  "responses": [
+    {
+      "prompt_id": "wl01",
+      "word_limit": 40,
+      "words": 39,
+      "length_tokens": 47,
+      "compliant": true,
+      "response": "Regularization helps prevent overfitting by adding a penalty term to the loss function, encouraging simpler models that generalize better to unseen data. This reduces complexity and noise in training data, improving model performance on both training and test sets."
+    },
+    {
+      "prompt_id": "wl02",
+      "word_limit": 25,
+      "words": 27,
+      "length_tokens": 32,
+      "compliant": false,
+      "response": "Overfitting is when a model performs well on training data but poorly on new, unseen data because it has learned the noise rather than the underlying pattern."
+    },
+    {
+      "prompt_id": "wl03",
+      "word_limit": 30,
+      "words": 29,
+      "length_tokens": 33,
+      "compliant": true,
+      "response": "A validation set is used to evaluate the performance of machine learning models during training and hyperparameter tuning, ensuring that the final model meets acceptable accuracy levels before deployment."
+    },
+    {
+      "prompt_id": "wl04",
+      "word_limit": 35,
+      "words": 37,
+      "length_tokens": 45,
+      "compliant": false,
+      "response": "Gradient descent is an optimization algorithm used to find the minimum of a function. It iteratively updates the parameters in the direction of steepest descent as defined by the negative of the gradient (slope) of the function."
+    },
+    {
+      "prompt_id": "wl05",
+      "word_limit": 45,
+      "words": 40,
+      "length_tokens": 49,
+      "compliant": true,
+      "response": "Advantage: Attention allows models to focus on relevant information, enhancing their ability to understand complex tasks.\n\nLimitation: It can be challenging for models to accurately determine the importance of all input elements, leading to potential biases or overlooking important details."
+    },
+    {
+      "prompt_id": "wl06",
+      "word_limit": 30,
+      "words": 30,
+      "length_tokens": 33,
+      "compliant": true,
+      "response": "Distribution shift refers to changes in the data distribution of training and test sets due to domain shifts or feature engineering differences, leading to performance degradation of machine learning models."
+    },
+    {
+      "prompt_id": "wl07",
+      "word_limit": 35,
+      "words": 72,
+      "length_tokens": 87,
+      "compliant": false,
+      "response": "A learning rate is an important hyperparameter that determines how much to adjust the model's parameters during training based on its error or loss function. It controls the step size and speed of the optimization process; too high can cause oscillation around the minimum, while too low may lead to slow convergence. Adjusting it helps balance between exploration (searching for new minima) and exploitation (focusing on improving the current best solution)."
+    },
+    {
+      "prompt_id": "wl08",
+      "word_limit": 40,
+      "words": 40,
+      "length_tokens": 47,
+      "compliant": true,
+      "response": "A model may perform well during training but poorly when deployed due to differences between training data and real-world scenarios (overfitting). Deployment contexts often involve unseen data or variations not present in the training set, leading to performance degradation."
+    },
+    {
+      "prompt_id": "wl09",
+      "word_limit": 30,
+      "words": 21,
+      "length_tokens": 25,
+      "compliant": true,
+      "response": "Calibration involves adjusting a model's confidence levels to reflect the actual likelihood of its predictions, ensuring they match observed outcomes."
+    },
+    {
+      "prompt_id": "wl10",
+      "word_limit": 45,
+      "words": 75,
+      "length_tokens": 85,
+      "compliant": false,
+      "response": "A frozen reference model in Reinforcement Learning with Human Feedback (RLHF) refers to the scenario where an AI system learns directly from human feedback without first being trained on large amounts of data or fine-tuned using labeled examples. This approach allows for quick adaptation and improvement based solely on user interaction, potentially leading to faster convergence towards optimal policies but also increasing risk due to potential biases or lack of generalization across different scenarios."
+    }
+  ]
+}

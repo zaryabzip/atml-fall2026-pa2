@@ -16,6 +16,15 @@ from transformers import (
 from common.data import repo_path
 
 
+def get_device() -> torch.device:
+    """CUDA if present, else Apple MPS, else CPU."""
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    if torch.backends.mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
+
+
 def resolve_dtype(name: str):
     name = str(name).lower()
     if name in {"bf16", "bfloat16"}:
@@ -79,8 +88,7 @@ def load_policy(cfg: dict, adapter_path: str | None = None, trainable: bool = Fa
     elif fresh_lora:
         model = get_peft_model(model, make_lora_config(cfg))
 
-    if torch.cuda.is_available():
-        model = model.cuda()
+    model = model.to(get_device())
 
     if trainable:
         model.train()
@@ -136,8 +144,8 @@ def load_reward_model(cfg: dict):
         kwargs["dtype"] = dtype
 
     model = AutoModelForSequenceClassification.from_pretrained(cfg["reward_model"], **kwargs)
-    if qcfg is None and torch.cuda.is_available():
-        model = model.cuda()
+    if qcfg is None:
+        model = model.to(get_device())
 
     # The RM repository tokenizer was incompatible with the pinned Transformers build during
     # instructor preparation. Use the canonical base-policy tokenizer intentionally.
@@ -172,8 +180,7 @@ def load_value_model(cfg: dict, checkpoint: str, train_mode: str = "lora_head"):
     elif train_mode == "frozen":
         for p in model.parameters():
             p.requires_grad_(False)
-        if torch.cuda.is_available():
-            model = model.cuda()
+        model = model.to(get_device())
         model.eval()
         return model
     elif train_mode == "full":
@@ -181,8 +188,7 @@ def load_value_model(cfg: dict, checkpoint: str, train_mode: str = "lora_head"):
     else:
         raise ValueError(f"Unknown value train_mode={train_mode!r}")
 
-    if torch.cuda.is_available():
-        model = model.cuda()
+    model = model.to(get_device())
     model.train()
     return model
 
@@ -250,3 +256,5 @@ def clear_gpu(*objects):
     gc.collect()
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
+    elif torch.backends.mps.is_available():
+        torch.mps.empty_cache()

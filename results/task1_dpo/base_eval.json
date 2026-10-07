@@ -1,0 +1,20 @@
+{
+  "name": "base",
+  "adapter": "none",
+  "eval_examples": 290,
+  "beta": 0.1,
+  "dpo_loss": 0.6931473016738892,
+  "preference_accuracy": 0.0,
+  "raw_policy_preference_accuracy": 0.4931034445762634,
+  "reference_preference_accuracy": 0.4931034445762634,
+  "log_ratio_margin_mean": 0.0,
+  "kl_per_token": 0.0,
+  "kl_per_sequence": 0.0,
+  "length_mean": 153.77241379310345,
+  "length_std": 104.12318598511499,
+  "length_median": 190.5,
+  "length_iqr": 213.5,
+  "truncation_rate": 0.43448275862068964,
+  "reward_mean": 1.2627989933408539,
+  "reward_std": 1.1593784172457346
+}

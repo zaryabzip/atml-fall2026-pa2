@@ -44,3 +44,30 @@ def load_json(path: str | Path) -> Any:
 def wall_timer():
     start = time.perf_counter()
     return lambda: time.perf_counter() - start
+
+
+def get_rng_state() -> dict[str, Any]:
+    state = {"cpu": torch.get_rng_state(), "random": random.getstate(), "numpy": np.random.get_state()}
+    if torch.cuda.is_available():
+        state["cuda"] = torch.cuda.get_rng_state_all()
+    if torch.backends.mps.is_available():
+        state["mps"] = torch.mps.get_rng_state()
+    return state
+
+
+def set_rng_state(state: dict[str, Any]) -> None:
+    torch.set_rng_state(state["cpu"])
+    random.setstate(state["random"])
+    np.random.set_state(state["numpy"])
+    if "cuda" in state:
+        torch.cuda.set_rng_state_all(state["cuda"])
+    if "mps" in state:
+        torch.mps.set_rng_state(state["mps"])
+
+
+def device_memory_gb() -> float | None:
+    if torch.cuda.is_available():
+        return torch.cuda.max_memory_allocated() / 1e9
+    if torch.backends.mps.is_available():
+        return torch.mps.driver_allocated_memory() / 1e9
+    return None

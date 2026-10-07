@@ -1,0 +1,9 @@
+{
+  "run_name": "standard",
+  "beta": 0.1,
+  "examples": 1446,
+  "optimizer_steps": 91,
+  "wall_clock_s": 20788.030727792007,
+  "peak_vram_gb": null,
+  "output": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task1_dpo/standard"
+}

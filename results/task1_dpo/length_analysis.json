@@ -1,0 +1,92 @@
+{
+  "standard": {
+    "per_stratum": {
+      "preferred_longer": {
+        "n": 78,
+        "beta": 0.1,
+        "dpo_loss": 0.7004231810569763,
+        "preference_accuracy": 0.4615384638309479,
+        "raw_policy_preference_accuracy": 0.12820513546466827,
+        "reference_preference_accuracy": 0.12820513546466827,
+        "log_ratio_margin_mean": -0.08929037302732468
+      },
+      "length_matched": {
+        "n": 80,
+        "beta": 0.1,
+        "dpo_loss": 0.6846125721931458,
+        "preference_accuracy": 0.612500011920929,
+        "raw_policy_preference_accuracy": 0.6000000238418579,
+        "reference_preference_accuracy": 0.6000000238418579,
+        "log_ratio_margin_mean": 0.21067333221435547
+      },
+      "rejected_longer": {
+        "n": 79,
+        "beta": 0.1,
+        "dpo_loss": 0.661144495010376,
+        "preference_accuracy": 0.6455696225166321,
+        "raw_policy_preference_accuracy": 0.9620253443717957,
+        "reference_preference_accuracy": 0.9620253443717957,
+        "log_ratio_margin_mean": 0.71906977891922
+      }
+    },
+    "length_bias_gap": -0.1840311586856842,
+    "word_limit": {
+      "compliance_rate": 0.6,
+      "mean_words": 36.5,
+      "mean_overshoot_ratio": 1.0158968253968252,
+      "words_mean": 36.5,
+      "words_std": 12.085114811204733,
+      "words_median": 38.0,
+      "words_iqr": 12.25,
+      "length_tokens_mean": 42.7,
+      "length_tokens_std": 13.505924625881784,
+      "length_tokens_median": 45.5,
+      "length_tokens_iqr": 16.25
+    }
+  },
+  "length_balanced": {
+    "per_stratum": {
+      "preferred_longer": {
+        "n": 78,
+        "beta": 0.1,
+        "dpo_loss": 0.7237480878829956,
+        "preference_accuracy": 0.43589743971824646,
+        "raw_policy_preference_accuracy": 0.12820513546466827,
+        "reference_preference_accuracy": 0.12820513546466827,
+        "log_ratio_margin_mean": -0.508028507232666
+      },
+      "length_matched": {
+        "n": 80,
+        "beta": 0.1,
+        "dpo_loss": 0.6786602735519409,
+        "preference_accuracy": 0.612500011920929,
+        "raw_policy_preference_accuracy": 0.6000000238418579,
+        "reference_preference_accuracy": 0.6000000238418579,
+        "log_ratio_margin_mean": 0.3472380042076111
+      },
+      "rejected_longer": {
+        "n": 79,
+        "beta": 0.1,
+        "dpo_loss": 0.6274591684341431,
+        "preference_accuracy": 0.7721518874168396,
+        "raw_policy_preference_accuracy": 0.9620253443717957,
+        "reference_preference_accuracy": 0.9620253443717957,
+        "log_ratio_margin_mean": 1.492869257926941
+      }
+    },
+    "length_bias_gap": -0.33625444769859314,
+    "word_limit": {
+      "compliance_rate": 0.7,
+      "mean_words": 35.6,
+      "mean_overshoot_ratio": 0.9965396825396825,
+      "words_mean": 35.6,
+      "words_std": 11.968291440301744,
+      "words_median": 32.5,
+      "words_iqr": 10.25,
+      "length_tokens_mean": 41.8,
+      "length_tokens_std": 13.31014650557987,
+      "length_tokens_median": 39.0,
+      "length_tokens_iqr": 14.75
+    }
+  }
+}

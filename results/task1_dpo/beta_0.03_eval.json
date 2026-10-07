@@ -1,0 +1,20 @@
+{
+  "name": "beta_0.03",
+  "adapter": "outputs/task1_dpo/beta_ablation/beta_0.03",
+  "eval_examples": 290,
+  "beta": 0.03,
+  "dpo_loss": 0.6911558508872986,
+  "preference_accuracy": 0.6068965792655945,
+  "raw_policy_preference_accuracy": 0.4931034445762634,
+  "reference_preference_accuracy": 0.4931034445762634,
+  "log_ratio_margin_mean": 0.13632778823375702,
+  "kl_per_token": -2.4538086253620733e-05,
+  "kl_per_sequence": -0.0038173645939517382,
+  "length_mean": 155.56896551724137,
+  "length_std": 104.88356632541031,
+  "length_median": 196.0,
+  "length_iqr": 216.75,
+  "truncation_rate": 0.4482758620689655,
+  "reward_mean": 1.2183545770316289,
+  "reward_std": 1.2357927407659246
+}

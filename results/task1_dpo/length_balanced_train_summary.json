@@ -1,0 +1,9 @@
+{
+  "run_name": "length_balanced",
+  "beta": 0.1,
+  "examples": 1442,
+  "optimizer_steps": 91,
+  "wall_clock_s": 10213.108288000047,
+  "peak_vram_gb": null,
+  "output": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task1_dpo/length_balanced"
+}
