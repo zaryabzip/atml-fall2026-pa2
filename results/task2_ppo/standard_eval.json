@@ -1,0 +1,18 @@
+{
+  "name": "standard",
+  "adapter": "outputs/task2_ppo/standard",
+  "eval_examples": 200,
+  "reward_mean": 1.4828125,
+  "reward_std": 1.533403274261631,
+  "reward_se": 0.10842798535240546,
+  "effective_reward_mean": 1.4078125,
+  "kl_per_token": -2.4655222066078762e-05,
+  "kl_per_sequence": -0.007801528587806388,
+  "entropy_per_token": 0.8379823380134228,
+  "length_mean": 316.425,
+  "length_std": 251.71363565567916,
+  "length_median": 277.5,
+  "length_iqr": 415.25,
+  "eos_rate": 0.925,
+  "truncation_rate": 0.075
+}

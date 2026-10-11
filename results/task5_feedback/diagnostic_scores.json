@@ -1,0 +1,67 @@
+{
+  "verifier_mismatches_with_expected": [],
+  "per_variant": {
+    "corrupt_reasoning_correct_final": {
+      "verifier": {
+        "pairs": 20,
+        "better_rate": 0.0,
+        "tie_rate": 1.0,
+        "wrong_preference_rate": 0.0
+      },
+      "judge": {
+        "pairs": 20,
+        "better_rate": 0.1,
+        "tie_rate": 0.6,
+        "wrong_preference_rate": 0.3
+      }
+    },
+    "good_reasoning_wrong_final": {
+      "verifier": {
+        "pairs": 20,
+        "better_rate": 1.0,
+        "tie_rate": 0.0,
+        "wrong_preference_rate": 0.0
+      },
+      "judge": {
+        "pairs": 20,
+        "better_rate": 0.15,
+        "tie_rate": 0.85,
+        "wrong_preference_rate": 0.0
+      }
+    },
+    "persuasive_filler_correct": {
+      "verifier": {
+        "pairs": 20,
+        "better_rate": 0.0,
+        "tie_rate": 1.0,
+        "wrong_preference_rate": 0.0
+      },
+      "judge": {
+        "pairs": 20,
+        "better_rate": 0.1,
+        "tie_rate": 0.35,
+        "wrong_preference_rate": 0.55
+      }
+    },
+    "gold_distractor_wrong_final": {
+      "verifier": {
+        "pairs": 20,
+        "better_rate": 1.0,
+        "tie_rate": 0.0,
+        "wrong_preference_rate": 0.0
+      },
+      "judge": {
+        "pairs": 20,
+        "better_rate": 0.0,
+        "tie_rate": 1.0,
+        "wrong_preference_rate": 0.0
+      }
+    }
+  },
+  "S_reason_verifier": 0.0,
+  "S_outcome_verifier": 1.0,
+  "S_outcome_incl_distractor_verifier": 1.0,
+  "S_reason_judge": 0.1,
+  "S_outcome_judge": 0.15,
+  "S_outcome_incl_distractor_judge": 0.075
+}

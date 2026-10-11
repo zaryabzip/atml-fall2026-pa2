@@ -1,0 +1,17 @@
+{
+  "name": "fork_dr_grpo",
+  "eval_examples": 200,
+  "reward_mean": 1.5208404541015625,
+  "reward_std": 1.4711794629769082,
+  "reward_se": 0.10402809746133551,
+  "effective_reward_mean": 1.5208404541015625,
+  "kl_per_token": 0.00014569858233152226,
+  "kl_per_sequence": 0.04608883266570046,
+  "entropy_per_token": 0.8375802582608525,
+  "length_mean": 316.33,
+  "length_std": 251.29120776501514,
+  "length_median": 286.5,
+  "length_iqr": 424.5,
+  "eos_rate": 0.935,
+  "truncation_rate": 0.065
+}

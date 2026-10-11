@@ -1,0 +1,26 @@
+{
+  "rollouts": 32,
+  "valid_tokens": 8814,
+  "ratio_mean": 1.015348196029663,
+  "ratio_abs_dev_mean": 0.036248013377189636,
+  "ratio_max": 32.6605110168457,
+  "ratio_min": 0.02590709738433361,
+  "unclipped_surrogate": 0.0001474077143939212,
+  "per_epsilon": {
+    "0.05": {
+      "clipped_surrogate": -0.005327778868377209,
+      "clip_fraction": 0.10630814731121063,
+      "affected_token_fraction": 0.05264352262020111
+    },
+    "0.2": {
+      "clipped_surrogate": -0.003930874168872833,
+      "clip_fraction": 0.008509189821779728,
+      "affected_token_fraction": 0.0046516903676092625
+    },
+    "0.5": {
+      "clipped_surrogate": -0.003271727589890361,
+      "clip_fraction": 0.005559337325394154,
+      "affected_token_fraction": 0.0032902201637625694
+    }
+  }
+}

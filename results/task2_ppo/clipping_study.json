@@ -1,0 +1,180 @@
+{
+  "cached_batch": {
+    "rollouts": 32,
+    "valid_tokens": 8814,
+    "ratio_mean": 1.015348196029663,
+    "ratio_abs_dev_mean": 0.036248013377189636,
+    "ratio_max": 32.6605110168457,
+    "ratio_min": 0.02590709738433361,
+    "unclipped_surrogate": 0.0001474077143939212,
+    "per_epsilon": {
+      "0.05": {
+        "clipped_surrogate": -0.005327778868377209,
+        "clip_fraction": 0.10630814731121063,
+        "affected_token_fraction": 0.05264352262020111
+      },
+      "0.2": {
+        "clipped_surrogate": -0.003930874168872833,
+        "clip_fraction": 0.008509189821779728,
+        "affected_token_fraction": 0.0046516903676092625
+      },
+      "0.5": {
+        "clipped_surrogate": -0.003271727589890361,
+        "clip_fraction": 0.005559337325394154,
+        "affected_token_fraction": 0.0032902201637625694
+      }
+    }
+  },
+  "forks": {
+    "0.05": {
+      "run": "fork_eps0.05_kl0.1",
+      "eval": {
+        "name": "fork_eps0.05_kl0.1",
+        "adapter": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task2_ppo/fork_eps0.05_kl0.1",
+        "eval_examples": 200,
+        "reward_mean": 1.4747978138923645,
+        "reward_std": 1.4695679185039472,
+        "reward_se": 0.10391414405883406,
+        "effective_reward_mean": 1.3947978138923645,
+        "kl_per_token": -3.8285735306369866e-05,
+        "kl_per_sequence": -0.011917200821335428,
+        "entropy_per_token": 0.8345735369537082,
+        "length_mean": 311.27,
+        "length_std": 250.41782504446445,
+        "length_median": 278.5,
+        "length_iqr": 401.5,
+        "eos_rate": 0.92,
+        "truncation_rate": 0.08
+      },
+      "stability": {
+        "updates": 8,
+        "policy_grad_norm": {
+          "mean": 0.5034813024103642,
+          "std": 0.35054750925637024,
+          "max": 1.2808839082717896
+        },
+        "policy_loss": {
+          "mean": -9.751431207405403e-06,
+          "std": 0.00043843965775992264,
+          "max": 0.0007477187973563559
+        },
+        "clip_fraction": {
+          "mean": 0.0,
+          "std": 0.0,
+          "max": 0.0
+        },
+        "ratio_abs_dev": {
+          "mean": 0.0002719685435295105,
+          "std": 0.00021694643044607866,
+          "max": 0.0006529688835144043
+        },
+        "kl": {
+          "mean": 7.269567277035094e-05,
+          "std": 0.0006563541529040273,
+          "max": 0.0017266733339056373
+        },
+        "final_kl": 0.0017266733339056373
+      }
+    },
+    "0.2": {
+      "run": "fork_eps0.2_kl0.1",
+      "eval": {
+        "name": "fork_eps0.2_kl0.1",
+        "adapter": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task2_ppo/fork_eps0.2_kl0.1",
+        "eval_examples": 200,
+        "reward_mean": 1.4747978138923645,
+        "reward_std": 1.4695679185039472,
+        "reward_se": 0.10391414405883406,
+        "effective_reward_mean": 1.3947978138923645,
+        "kl_per_token": -3.8285735306369866e-05,
+        "kl_per_sequence": -0.011917200821335428,
+        "entropy_per_token": 0.8345735369537082,
+        "length_mean": 311.27,
+        "length_std": 250.41782504446445,
+        "length_median": 278.5,
+        "length_iqr": 401.5,
+        "eos_rate": 0.92,
+        "truncation_rate": 0.08
+      },
+      "stability": {
+        "updates": 8,
+        "policy_grad_norm": {
+          "mean": 0.5034813024103642,
+          "std": 0.35054750925637024,
+          "max": 1.2808839082717896
+        },
+        "policy_loss": {
+          "mean": -9.751431207405403e-06,
+          "std": 0.00043843965775992264,
+          "max": 0.0007477187973563559
+        },
+        "clip_fraction": {
+          "mean": 0.0,
+          "std": 0.0,
+          "max": 0.0
+        },
+        "ratio_abs_dev": {
+          "mean": 0.0002719685435295105,
+          "std": 0.00021694643044607866,
+          "max": 0.0006529688835144043
+        },
+        "kl": {
+          "mean": 7.269567277035094e-05,
+          "std": 0.0006563541529040273,
+          "max": 0.0017266733339056373
+        },
+        "final_kl": 0.0017266733339056373
+      }
+    },
+    "0.5": {
+      "run": "fork_eps0.5_kl0.1",
+      "eval": {
+        "name": "fork_eps0.5_kl0.1",
+        "adapter": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task2_ppo/fork_eps0.5_kl0.1",
+        "eval_examples": 200,
+        "reward_mean": 1.4747978138923645,
+        "reward_std": 1.4695679185039472,
+        "reward_se": 0.10391414405883406,
+        "effective_reward_mean": 1.3947978138923645,
+        "kl_per_token": -3.8285735306369866e-05,
+        "kl_per_sequence": -0.011917200821335428,
+        "entropy_per_token": 0.8345735369537082,
+        "length_mean": 311.27,
+        "length_std": 250.41782504446445,
+        "length_median": 278.5,
+        "length_iqr": 401.5,
+        "eos_rate": 0.92,
+        "truncation_rate": 0.08
+      },
+      "stability": {
+        "updates": 8,
+        "policy_grad_norm": {
+          "mean": 0.5034813024103642,
+          "std": 0.35054750925637024,
+          "max": 1.2808839082717896
+        },
+        "policy_loss": {
+          "mean": -9.751431207405403e-06,
+          "std": 0.00043843965775992264,
+          "max": 0.0007477187973563559
+        },
+        "clip_fraction": {
+          "mean": 0.0,
+          "std": 0.0,
+          "max": 0.0
+        },
+        "ratio_abs_dev": {
+          "mean": 0.0002719685435295105,
+          "std": 0.00021694643044607866,
+          "max": 0.0006529688835144043
+        },
+        "kl": {
+          "mean": 7.269567277035094e-05,
+          "std": 0.0006563541529040273,
+          "max": 0.0017266733339056373
+        },
+        "final_kl": 0.0017266733339056373
+      }
+    }
+  }
+}

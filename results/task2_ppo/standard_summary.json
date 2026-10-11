@@ -1,0 +1,10 @@
+{
+  "run_name": "standard",
+  "updates": 20,
+  "clip_epsilon": 0.2,
+  "kl_beta": 0.1,
+  "wall_clock_s": 497.39128416602034,
+  "peak_memory_gb": 12.545212416,
+  "device": "mps:0",
+  "output": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task2_ppo/standard"
+}

@@ -1,0 +1,10 @@
+{
+  "run_name": "fork_eps0.5_kl0.1",
+  "updates": 8,
+  "clip_epsilon": 0.5,
+  "kl_beta": 0.1,
+  "wall_clock_s": 284.0841022080276,
+  "peak_memory_gb": 12.50746368,
+  "device": "mps:0",
+  "output": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task2_ppo/fork_eps0.5_kl0.1"
+}

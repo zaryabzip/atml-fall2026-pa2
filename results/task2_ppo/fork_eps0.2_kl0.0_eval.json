@@ -1,0 +1,18 @@
+{
+  "name": "fork_eps0.2_kl0.0",
+  "adapter": "/Users/zippy/Desktop/ATML/PA2/ATML-PA2-LLM-PostTraining/outputs/task2_ppo/fork_eps0.2_kl0.0",
+  "eval_examples": 200,
+  "reward_mean": 1.4830398559570312,
+  "reward_std": 1.4772226340668304,
+  "reward_se": 0.10445541418709096,
+  "effective_reward_mean": 1.4030398559570312,
+  "kl_per_token": -5.193938154613244e-07,
+  "kl_per_sequence": -0.00016243527352344245,
+  "entropy_per_token": 0.8343423830905335,
+  "length_mean": 312.74,
+  "length_std": 254.162059324361,
+  "length_median": 279.0,
+  "length_iqr": 414.5,
+  "eos_rate": 0.92,
+  "truncation_rate": 0.08
+}

@@ -11,7 +11,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 from common.data import repo_path
-from common.models import resolve_dtype
+from common.models import get_device, resolve_dtype
 
 PAIRWISE_RUBRIC = """You are comparing two candidate solutions to the same math problem.
 
@@ -62,6 +62,8 @@ class PairwiseAIJudge:
             kwargs["dtype"] = resolve_dtype(cfg.get("dtype", "float16"))
 
         self.model = AutoModelForCausalLM.from_pretrained(cfg["ai_judge_model"], **kwargs)
+        if "quantization_config" not in kwargs:
+            self.model.to(get_device())
         self.model.eval()
 
     def _key(self, problem, a, b):

@@ -1,0 +1,17 @@
+{
+  "name": "standard",
+  "eval_examples": 200,
+  "reward_mean": 1.4606222534179687,
+  "reward_std": 1.5293424102552824,
+  "reward_se": 0.10814083890476892,
+  "effective_reward_mean": 1.4606222534179687,
+  "kl_per_token": 0.00013856762705822414,
+  "kl_per_sequence": 0.04312155269522919,
+  "entropy_per_token": 0.8318915185492002,
+  "length_mean": 311.195,
+  "length_std": 250.03199190303627,
+  "length_median": 278.0,
+  "length_iqr": 401.5,
+  "eos_rate": 0.925,
+  "truncation_rate": 0.075
+}

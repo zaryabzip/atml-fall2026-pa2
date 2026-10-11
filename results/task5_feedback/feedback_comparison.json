@@ -1,0 +1,118 @@
+{
+  "policies": {
+    "sft": {
+      "gsm_accuracy": 0.2966666666666667,
+      "transfer_accuracy": 0.44,
+      "accuracy_drop": -0.1433333333333333,
+      "gsm_format": 0.37,
+      "transfer_format": 0.57,
+      "gsm_tokens": 275.27,
+      "transfer_tokens": 163.62,
+      "gsm_win_vs_sft": null,
+      "transfer_win_vs_sft": null,
+      "win_drop": null,
+      "gsm_verifier_judge_agreement": null,
+      "transfer_verifier_judge_agreement": null
+    },
+    "rlvr": {
+      "gsm_accuracy": 0.3,
+      "transfer_accuracy": 0.47,
+      "accuracy_drop": -0.16999999999999998,
+      "gsm_format": 0.37333333333333335,
+      "transfer_format": 0.6,
+      "gsm_tokens": 274.8066666666667,
+      "transfer_tokens": 163.51,
+      "gsm_win_vs_sft": 0.49166666666666664,
+      "transfer_win_vs_sft": 0.575,
+      "win_drop": -0.08333333333333331,
+      "gsm_verifier_judge_agreement": 0.23,
+      "transfer_verifier_judge_agreement": 0.13
+    },
+    "rlaif": {
+      "gsm_accuracy": 0.27666666666666667,
+      "transfer_accuracy": 0.43,
+      "accuracy_drop": -0.15333333333333332,
+      "gsm_format": 0.3566666666666667,
+      "transfer_format": 0.56,
+      "gsm_tokens": 273.94666666666666,
+      "transfer_tokens": 163.18,
+      "gsm_win_vs_sft": 0.4533333333333333,
+      "transfer_win_vs_sft": 0.54,
+      "win_drop": -0.08666666666666673,
+      "gsm_verifier_judge_agreement": 0.23666666666666666,
+      "transfer_verifier_judge_agreement": 0.12
+    }
+  },
+  "diagnostic": {
+    "S_reason": {
+      "verifier": 0.0,
+      "judge": 0.1
+    },
+    "S_outcome": {
+      "verifier": 1.0,
+      "judge": 0.15
+    },
+    "S_outcome_incl_distractor": {
+      "verifier": 1.0,
+      "judge": 0.075
+    },
+    "per_variant": {
+      "corrupt_reasoning_correct_final": {
+        "verifier": {
+          "pairs": 20,
+          "better_rate": 0.0,
+          "tie_rate": 1.0,
+          "wrong_preference_rate": 0.0
+        },
+        "judge": {
+          "pairs": 20,
+          "better_rate": 0.1,
+          "tie_rate": 0.6,
+          "wrong_preference_rate": 0.3
+        }
+      },
+      "good_reasoning_wrong_final": {
+        "verifier": {
+          "pairs": 20,
+          "better_rate": 1.0,
+          "tie_rate": 0.0,
+          "wrong_preference_rate": 0.0
+        },
+        "judge": {
+          "pairs": 20,
+          "better_rate": 0.15,
+          "tie_rate": 0.85,
+          "wrong_preference_rate": 0.0
+        }
+      },
+      "persuasive_filler_correct": {
+        "verifier": {
+          "pairs": 20,
+          "better_rate": 0.0,
+          "tie_rate": 1.0,
+          "wrong_preference_rate": 0.0
+        },
+        "judge": {
+          "pairs": 20,
+          "better_rate": 0.1,
+          "tie_rate": 0.35,
+          "wrong_preference_rate": 0.55
+        }
+      },
+      "gold_distractor_wrong_final": {
+        "verifier": {
+          "pairs": 20,
+          "better_rate": 1.0,
+          "tie_rate": 0.0,
+          "wrong_preference_rate": 0.0
+        },
+        "judge": {
+          "pairs": 20,
+          "better_rate": 0.0,
+          "tie_rate": 1.0,
+          "wrong_preference_rate": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "dataset": "transfer",
+  "examples": 100,
+  "policies": {
+    "sft": {
+      "exact_accuracy": 0.44,
+      "format_compliance": 0.57,
+      "mean_response_tokens": 163.62,
+      "std_response_tokens": 71.84062638925137,
+      "truncation_rate": 0.0,
+      "failure_types": {
+        "no_final_answer": 43,
+        "cut_off_at_limit": 0,
+        "wrong_number": 13
+      }
+    },
+    "rlvr": {
+      "exact_accuracy": 0.47,
+      "format_compliance": 0.6,
+      "mean_response_tokens": 163.51,
+      "std_response_tokens": 71.70627517867597,
+      "truncation_rate": 0.0,
+      "failure_types": {
+        "no_final_answer": 40,
+        "cut_off_at_limit": 0,
+        "wrong_number": 13
+      },
+      "verifier_tie_pairs": 97,
+      "judge_decisive_when_verifier_ties": 86,
+      "win_rate_vs_sft": 0.575,
+      "wins": 52,
+      "losses": 37,
+      "ties": 11,
+      "verifier_judge_agreement": 0.13,
+      "decisive_pairs": 3,
+      "judge_agrees_on_decisive": 0.6666666666666666
+    },
+    "rlaif": {
+      "exact_accuracy": 0.43,
+      "format_compliance": 0.56,
+      "mean_response_tokens": 163.18,
+      "std_response_tokens": 70.35188412544471,
+      "truncation_rate": 0.0,
+      "failure_types": {
+        "no_final_answer": 44,
+        "cut_off_at_limit": 0,
+        "wrong_number": 13
+      },
+      "verifier_tie_pairs": 97,
+      "judge_decisive_when_verifier_ties": 86,
+      "win_rate_vs_sft": 0.54,
+      "wins": 48,
+      "losses": 40,
+      "ties": 12,
+      "verifier_judge_agreement": 0.12,
+      "decisive_pairs": 3,
+      "judge_agrees_on_decisive": 0.3333333333333333
+    }
+  }
+}

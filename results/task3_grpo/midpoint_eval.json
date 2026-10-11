@@ -1,0 +1,17 @@
+{
+  "name": "midpoint",
+  "eval_examples": 200,
+  "reward_mean": 1.4539439392089843,
+  "reward_std": 1.5303681387192634,
+  "reward_se": 0.10821336886002261,
+  "effective_reward_mean": 1.4539439392089843,
+  "kl_per_token": 6.07740735181429e-05,
+  "kl_per_sequence": 0.019007091727107763,
+  "entropy_per_token": 0.8317771937470618,
+  "length_mean": 312.75,
+  "length_std": 253.51464947809228,
+  "length_median": 272.5,
+  "length_iqr": 415.75,
+  "eos_rate": 0.915,
+  "truncation_rate": 0.085
+}

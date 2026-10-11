@@ -6,10 +6,12 @@ import re
 from pathlib import Path
 
 import torch
+from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
-from common.data import load_yaml, read_jsonl
-from common.models import resolve_dtype
+from common.data import load_yaml, read_jsonl, repo_path, write_jsonl
+from common.logging_utils import append_jsonl
+from common.models import get_device, resolve_dtype
 
 LABELS = {
     "SAFE_ANSWER",
@@ -56,6 +58,8 @@ def load_judge(cfg):
         kwargs["dtype"] = resolve_dtype(cfg.get("dtype", "float16"))
 
     model = AutoModelForCausalLM.from_pretrained(cfg["ai_judge_model"], **kwargs)
+    if "quantization_config" not in kwargs:
+        model.to(get_device())
     model.eval()
     return tok, model
 
@@ -102,10 +106,29 @@ def judge_one(tok, model, prompt, response, max_new_tokens=64):
     return parse_json(generated)
 
 
+def judge_file(cfg, tok, model, gen_path: Path, out_path: Path):
+    rows = read_jsonl(gen_path)
+    cache_path = out_path.with_suffix(".partial.jsonl")
+    judged = read_jsonl(cache_path) if cache_path.exists() else []  # labels saved by an earlier run
+    done = {r["xstest_id"] for r in judged}
+    for row in tqdm(rows, desc=f"judging {gen_path.stem}"):
+        if row["xstest_id"] in done:
+            continue
+        verdict = judge_one(tok, model, row["prompt"], row["response"], max_new_tokens=int(cfg["judge_max_new_tokens"]))
+        rec = {**row, "ai_label": verdict["label"], "ai_confidence": verdict["confidence"], "ai_rationale": verdict["rationale_tag"]}
+        judged.append(rec)
+        append_jsonl(cache_path, rec)  # cache each label as soon as it is made
+    by_id = {r["xstest_id"]: r for r in judged}
+    write_jsonl(out_path, [by_id[r["xstest_id"]] for r in rows])  # same order as the generated file
+    cache_path.unlink(missing_ok=True)
+    return len(rows)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/feedback.yaml")
     ap.add_argument("--input", help="Optional generated JSONL file to inspect")
+    ap.add_argument("--policies", nargs="+", default=["sft", "dpo", "ppo", "grpo"])
     args = ap.parse_args()
     cfg = load_yaml(args.config)
     tok, model = load_judge(cfg)
@@ -113,9 +136,18 @@ def main():
     if args.input:
         rows = read_jsonl(args.input)
         print("Input rows:", len(rows))
-    raise NotImplementedError(
-        "TODO(student): apply judge_one to your frozen-policy response files, cache the labels, and implement the required Task 4 aggregation."
-    )
+
+    outdir = repo_path(cfg["results_dir"]) / "task4_safety"
+    for name in args.policies:
+        gen_path = outdir / f"generated_{name}.jsonl"
+        out_path = outdir / f"judged_{name}.jsonl"
+        if out_path.exists():
+            print(f"{name} already judged, skipping")
+            continue
+        if not gen_path.exists():
+            raise FileNotFoundError(f"generate {name} responses first, missing {gen_path}")
+        n = judge_file(cfg, tok, model, gen_path, out_path)
+        print(f"{name}: judged {n} responses into {out_path}")
 
 
 if __name__ == "__main__":

@@ -30,9 +30,39 @@ def main():
     if not src.exists():
         raise FileNotFoundError("Generate/save SFT responses first: " + str(src))
     ids = fixed_audit_ids(read_jsonl(src), int(cfg["manual_audit_per_class"]), int(cfg["seed"]))
-    pd.DataFrame({"xstest_id": ids, "manual_label": [""] * len(ids)}).to_csv(outdir / "manual_audit_ids.csv", index=False)
-    print("Wrote fixed audit IDs:", outdir / "manual_audit_ids.csv")
+    ids_path = outdir / "manual_audit_ids.csv"
+    if ids_path.exists():
+        print("Audit IDs already exist, not overwriting:", ids_path)  # protects any labels already typed in
+    else:
+        pd.DataFrame({"xstest_id": ids, "manual_label": [""] * len(ids)}).to_csv(ids_path, index=False)
+        print("Wrote fixed audit IDs:", ids_path)
     print("Join these IDs to each policy's generated responses and label without viewing AI labels first.")
+
+    sheet_path = outdir / "manual_audit_sheet.csv"
+    if sheet_path.exists():
+        print("Labeling sheet already exists, not overwriting:", sheet_path)
+        return
+    rows = []
+    for name in ["sft", "dpo", "ppo", "grpo"]:  # one row per audited prompt per policy
+        gen = outdir / f"generated_{name}.jsonl"
+        if not gen.exists():
+            print(f"skipping {name}, no generated responses yet")
+            continue
+        by_id = {r["xstest_id"]: r for r in read_jsonl(gen)}
+        for i in ids:
+            r = by_id[i]
+            rows.append({
+                "xstest_id": i,
+                "policy": name,
+                "benchmark_class": r["benchmark_class"],
+                "type": r["type"],
+                "prompt": r["prompt"],
+                "response": r["response"],
+                "manual_label": "",  # fill with one of the five labels
+            })
+    pd.DataFrame(rows).to_csv(sheet_path, index=False)  # no ai labels in this sheet
+    print(f"Wrote labeling sheet with {len(rows)} rows:", sheet_path)
+    print("Labels to use are SAFE_ANSWER, JUSTIFIED_REFUSAL, UNSAFE_COMPLIANCE, OVER_REFUSAL, AMBIGUOUS")
 
 
 if __name__ == "__main__":

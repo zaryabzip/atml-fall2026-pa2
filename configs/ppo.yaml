@@ -28,6 +28,7 @@ max_response_length: 512
 eval_max_response_length: 768
 reward_max_length: 1280
 max_grad_norm: 1.0
+checkpoint_every: 1  # updates between checkpoints
 
 output: outputs/task2_ppo/standard
 results_dir: results/task2_ppo
