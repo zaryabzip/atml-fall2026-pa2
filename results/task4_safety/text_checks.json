@@ -1,0 +1,23 @@
+{
+  "refusal_rule": "regex refusal phrase in the first 250 characters of the reply",
+  "safe_prompts": 250,
+  "safe_text_refusals": {
+    "sft": 86,
+    "dpo": 87,
+    "ppo": 85,
+    "grpo": 85
+  },
+  "safe_answers_differing_from_sft": {
+    "sft": 0,
+    "dpo": 179,
+    "ppo": 55,
+    "grpo": 53
+  },
+  "preference_pairs": {
+    "pairs": 1500,
+    "chosen_refuses_only": 26,
+    "rejected_refuses_only": 32,
+    "both_refuse": 2,
+    "neither": 1440
+  }
+}
