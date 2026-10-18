@@ -14,14 +14,14 @@ from common.data import load_yaml, read_jsonl, repo_path
 
 FIG = repo_path("report/figures")
 TAB = repo_path("report/tables")
-R1, R2, R3 = repo_path("results/task1_dpo"), repo_path("results/task2_ppo"), repo_path("results/task3_grpo")
+R1, R2, R3 = repo_path("results/task1_dpo"), repo_path("results/task2_ppo"), repo_path("results/task3_grpo")  # results folder per task
 R4, R5 = repo_path("results/task4_safety"), repo_path("results/task5_feedback")
 
 SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]  # validated categorical slots in fixed order
-INK, INK2, GRID, NEUTRAL = "#0b0b0b", "#52514e", "#e4e3df", "#b5b4ae"
-MARKERS = ["o", "s", "^", "D", "v"]
+INK, INK2, GRID, NEUTRAL = "#0b0b0b", "#52514e", "#e4e3df", "#b5b4ae"  # text, grid and neutral colors
+MARKERS = ["o", "s", "^", "D", "v"]  # marker per series
 
-plt.rcParams.update({
+plt.rcParams.update({  # shared figure style
     "font.size": 8, "axes.titlesize": 8.5, "axes.labelsize": 8, "legend.fontsize": 7, "xtick.labelsize": 7, "ytick.labelsize": 7,
     "axes.edgecolor": INK2, "axes.labelcolor": INK, "xtick.color": INK2, "ytick.color": INK2, "text.color": INK,
     "axes.spines.top": False, "axes.spines.right": False, "axes.grid": True, "grid.color": GRID, "grid.linewidth": 0.6,
@@ -30,11 +30,11 @@ plt.rcParams.update({
 })
 
 
-def jl(path):
+def jl(path):  # read jsonl or empty list
     return read_jsonl(path) if path.exists() else []
 
 
-def jload(path):
+def jload(path):  # read json or none
     return json.loads(path.read_text()) if path.exists() else None
 
 
@@ -45,8 +45,8 @@ def save(fig, name):
     print("figure", name)
 
 
-def table(df, name, floatfmt=3):
-    df.to_csv(TAB / f"{name}.csv", index=False)
+def table(df, name, floatfmt=3):  # write a table as csv, md and tex
+    df.to_csv(TAB / f"{name}.csv", index=False)  # csv copy
     cols = list(df.columns)
     fmt = lambda v: f"{v:.{floatfmt}f}" if isinstance(v, (float, np.floating)) and not math.isnan(v) else ("" if v is None or (isinstance(v, float) and math.isnan(v)) else str(v))
     lines = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
@@ -55,19 +55,19 @@ def table(df, name, floatfmt=3):
     tex = lambda v: fmt(v).replace("\\", "\\textbackslash{}").replace("_", "\\_").replace("%", "\\%").replace("&", "\\&").replace("#", "\\#").replace("β", "$\\beta$").replace("ε", "$\\epsilon$").replace("×", "$\\times$")  # greek letters as math symbols
     body = [" & ".join(tex(c) for c in cols) + " \\\\", "\\midrule"] + [" & ".join(tex(v) for v in row) + " \\\\" for row in df.itertuples(index=False)]
     (TAB / f"{name}.tex").write_text(  # booktabs table scaled to the text width
-        "\\resizebox{\\linewidth}{!}{%\n\\begin{tabular}{" + "l" * len(cols) + "}\n\\toprule\n" + "\n".join(body) + "\n\\bottomrule\n\\end{tabular}}\n"
+        "\\begin{adjustbox}{max width=\\linewidth}\n\\begin{tabular}{" + "l" * len(cols) + "}\n\\toprule\n" + "\n".join(body) + "\n\\bottomrule\n\\end{tabular}\n\\end{adjustbox}\n"
     )
     print("table", name)
 
 
-def smooth(x, w=5):
+def smooth(x, w=5):  # moving average for noisy logs
     x = np.asarray(x, float)
     if len(x) < w:
         return x
     return np.convolve(np.pad(x, (w // 2, w - 1 - w // 2), mode="edge"), np.ones(w) / w, mode="valid")  # centered moving average
 
 
-def small_multiples(series, keys, titles, name, ncols=4, xlabel="update"):
+def small_multiples(series, keys, titles, name, ncols=4, xlabel="update"):  # one panel per logged metric
     rows = math.ceil(len(keys) / ncols)
     fig, axes = plt.subplots(rows, ncols, figsize=(7.0, 1.7 * rows), squeeze=False)
     for ax, key, title in zip(axes.flat, keys, titles):
@@ -86,7 +86,7 @@ def small_multiples(series, keys, titles, name, ncols=4, xlabel="update"):
     save(fig, name)
 
 
-def eval_row(name, e, extra=None):
+def eval_row(name, e, extra=None):  # one row of held out eval metrics
     return {
         "run": name, "n": e["eval_examples"], "reward": e["reward_mean"], "reward_se": e.get("reward_se", e["reward_std"] / math.sqrt(e["eval_examples"])),
         "kl_per_token": e["kl_per_token"], "kl_per_seq": e["kl_per_sequence"], "entropy_per_token": e.get("entropy_per_token"),
@@ -95,10 +95,10 @@ def eval_row(name, e, extra=None):
     }
 
 
-def task1():
+def task1():  # dpo figures and tables
     runs = {"base": "base (no training)", "standard": "standard (1446 pairs)", "beta_0.03": "β=0.03 (600)", "beta_0.1": "β=0.10 (600)", "beta_0.3": "β=0.30 (600)"}
     rows = []
-    for k, label in runs.items():
+    for k, label in runs.items():  # summary row per dpo run
         e = jload(R1 / f"{k}_eval.json")
         n = e["eval_examples"]
         rows.append({"run": label, "beta": e["beta"], "dpo_loss": e["dpo_loss"], "pref_acc": e["preference_accuracy"],
@@ -108,7 +108,7 @@ def task1():
                      "length_mean": e["length_mean"], "length_std": e["length_std"], "truncation": e["truncation_rate"]})
     table(pd.DataFrame(rows), "t1_dpo_summary")
 
-    logs = {"standard": jl(R1 / "standard_train_log.jsonl"), "β=0.03": jl(R1 / "beta_0.03_train_log.jsonl"), "β=0.10": jl(R1 / "beta_0.1_train_log.jsonl"),
+    logs = {"standard": jl(R1 / "standard_train_log.jsonl"), "β=0.03": jl(R1 / "beta_0.03_train_log.jsonl"), "β=0.10": jl(R1 / "beta_0.1_train_log.jsonl"),  # training logs per run
             "β=0.30": jl(R1 / "beta_0.3_train_log.jsonl"), "length balanced": jl(R1 / "length_balanced_train_log.jsonl")}
     fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.1))
     for i, (label, log) in enumerate(logs.items()):
@@ -127,7 +127,7 @@ def task1():
     fig.tight_layout()
     save(fig, "f1_dpo_training")
 
-    forks = [0.03, 0.10, 0.30]
+    forks = [0.03, 0.10, 0.30]  # beta study figure
     fr = [r for r in rows if r["run"].startswith("β")]
     fig, axes = plt.subplots(1, 3, figsize=(7.0, 2.0))
     panels = [("pref_acc", "pref_acc_se", "held-out preference accuracy"), ("kl_per_seq", None, "KL to reference per sequence"), ("reward", "reward_se", "reward model score")]
@@ -139,7 +139,7 @@ def task1():
     fig.tight_layout()
     save(fig, "f1_beta_study")
 
-    la = jload(R1 / "length_analysis.json")
+    la = jload(R1 / "length_analysis.json")  # length strata results
     strata = ["preferred_longer", "length_matched", "rejected_longer"]
     srows = []
     for model, v in la.items():
@@ -152,7 +152,7 @@ def task1():
     table(sdf, "t1_length_strata")
     rq = jload(R1 / "rq_support.json")
     comp = rq["rq2_dataset_length"] if rq else None
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2), gridspec_kw={"width_ratios": [1.4, 1]})
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2), gridspec_kw={"width_ratios": [1.4, 1]})  # accuracy by stratum and training mix
     w = 0.38
     for i, model in enumerate(["standard", "length_balanced"]):
         d = sdf[sdf["model"] == model]
@@ -161,7 +161,7 @@ def task1():
     axes[0].axhline(0.5, color=NEUTRAL, ls="--", lw=1)
     axes[0].set_xticks(range(3)); axes[0].set_xticklabels(["preferred longer", "matched", "rejected longer"])
     axes[0].set_title("held-out accuracy by length stratum"); axes[0].legend(fontsize=6); axes[0].grid(axis="x", visible=False)
-    if comp:
+    if comp:  # training pair composition panel
         names = [("standard_train", "standard train"), ("length_balanced_train", "balanced train")]
         left = np.zeros(2)
         for j, (key, lab) in enumerate([("preferred_longer_share", "preferred longer"), ("length_matched_share", "matched"), ("rejected_longer_share", "rejected longer")]):
@@ -176,7 +176,7 @@ def task1():
     fig.tight_layout()
     save(fig, "f1_length_strata")
 
-    wl = []
+    wl = []  # word limit table
     base = jload(R1 / "word_limit_base.json")
     entries = ([("base", base["summary"])] if base else []) + [(m, la[m]["word_limit"]) for m in ["standard", "length_balanced"]]
     for m, s in entries:
@@ -185,27 +185,27 @@ def task1():
     table(pd.DataFrame(wl), "t1_word_limit")
 
 
-def rl_task(rdir, prefix, tprefix, runs, traj_keys, traj_titles):
+def rl_task(rdir, prefix, tprefix, runs, traj_keys, traj_titles):  # shared ppo and grpo outputs
     std_log = jl(rdir / "standard_log.jsonl")
-    small_multiples({"standard": std_log}, traj_keys, traj_titles, f"{prefix}_standard_trajectories")
+    small_multiples({"standard": std_log}, traj_keys, traj_titles, f"{prefix}_standard_trajectories")  # standard run trajectories
     s = jload(rdir / "standard_summary.json")
-    keep = {k: v for k, v in s.items() if k not in ("config", "output")}
+    keep = {k: v for k, v in s.items() if k not in ("config", "output")}  # summary without the config dump
     table(pd.DataFrame([keep]), f"{tprefix}_standard_summary")
     table(pd.DataFrame([eval_row(label, jload(rdir / f"{k}_eval.json")) for k, label in runs.items() if (rdir / f"{k}_eval.json").exists()]), f"{tprefix}_eval_runs")
     return std_log
 
 
-def task2():
+def task2():  # ppo figures and tables
     runs = {"midpoint": "midpoint", "standard": "standard (20)", "fork_eps0.05_kl0.1": "ε=0.05", "fork_eps0.2_kl0.1": "ε=0.20, βKL=0.10 (default)",
             "fork_eps0.5_kl0.1": "ε=0.50", "fork_eps0.2_kl0.0": "βKL=0.0", "fork_eps0.2_kl0.2": "βKL=0.20"}
     rl_task(R2, "f2_ppo", "t2_ppo", runs,
             ["reward", "kl", "policy_loss", "value_loss", "entropy", "clip_fraction", "policy_grad_norm", "response_length"],
             ["reward", "KL to reference", "policy loss", "value loss", "entropy", "clip fraction", "policy grad norm", "response length"])
-    clip = jload(R2 / "clipping_study.json")
+    clip = jload(R2 / "clipping_study.json")  # clipping study
     cb = clip["cached_batch"]["per_epsilon"]
     eps = list(cb)
     table(pd.DataFrame([{"epsilon": float(e), **cb[e]} for e in eps]), "t2_clipping_cached")
-    fig, ax = plt.subplots(figsize=(3.4, 2.1))
+    fig, ax = plt.subplots(figsize=(3.4, 2.1))  # cached batch clip bars
     xs = np.arange(len(eps)); w = 0.38
     for i, (key, lab) in enumerate([("clip_fraction", "ratio outside [1-ε, 1+ε]"), ("affected_token_fraction", "clipping changes the objective")]):
         vals = [cb[e][key] for e in eps]
@@ -216,14 +216,14 @@ def task2():
     ax.set_title("cached batch (8,814 tokens)"); ax.legend(fontsize=6); ax.grid(axis="x", visible=False)
     fig.tight_layout()
     save(fig, "f2_clipping_cached")
-    table(pd.DataFrame([{"epsilon": e, "policy_grad_norm_mean": f["stability"]["policy_grad_norm"]["mean"], "policy_loss_std": f["stability"]["policy_loss"]["std"],
+    table(pd.DataFrame([{"epsilon": e, "policy_grad_norm_mean": f["stability"]["policy_grad_norm"]["mean"], "policy_loss_std": f["stability"]["policy_loss"]["std"],  # epsilon fork table
                          "clip_fraction_mean": f["stability"]["clip_fraction"]["mean"], "ratio_abs_dev_mean": f["stability"]["ratio_abs_dev"]["mean"],
                          "final_kl": f["stability"]["final_kl"], "eval_reward": f["eval"]["reward_mean"]} for e, f in clip["forks"].items()]), "t2_clipping_forks")
 
-    kl = jload(R2 / "kl_study.json")
+    kl = jload(R2 / "kl_study.json")  # kl study
     logs = {f"βKL={float(k):.2f}": jl(R2 / f"{f['run']}_log.jsonl") for k, f in kl["forks"].items()}
     small_multiples(logs, ["reward", "kl", "entropy", "response_length"], ["reward", "KL to reference", "entropy", "response length"], "f2_kl_trajectories")
-    rq = jload(R2 / "rq_support.json")
+    rq = jload(R2 / "rq_support.json")  # rq tables
     if rq:
         fc = rq["rq2_kl_first_change"]
         table(pd.DataFrame([{"comparison": c, **{k: fc[c][k]["first_update_differs"] for k in ["policy_loss", "kl", "entropy", "reward", "response_length", "clip_fraction"]},
@@ -233,12 +233,12 @@ def task2():
                             for r in ri if r != "standard_vs_midpoint_paired"]), "t2_reward_informativeness")
 
 
-def task3():
+def task3():  # grpo figures and tables
     runs = {"midpoint": "midpoint", "standard": "standard (20)", "fork_grpo": "grpo fork (8)", "fork_dr_grpo": "dr_grpo fork (8)"}
     rl_task(R3, "f3_grpo", "t3_grpo", runs,
             ["reward", "reward_std", "kl", "entropy", "loss", "grad_norm", "response_length", "masked_completions"],
             ["mean group reward", "within-group reward std", "KL to reference", "entropy", "loss", "grad norm", "mean response length", "masked completions (of 4)"])
-    gs = jload(R3 / "group_size_study.json")
+    gs = jload(R3 / "group_size_study.json")  # group size study
     ks = [int(k) for k in gs["per_k"]]
     rows = [{"K": k, "bin": b, **gs["per_k"][str(k)][b]} for k in ks for b in ["all", "hard", "easy"]]
     table(pd.DataFrame(rows), "t3_group_size")
@@ -252,7 +252,7 @@ def task3():
     fig.tight_layout()
     save(fig, "f3_group_size")
 
-    norm = jload(R3 / "normalization_study.json")
+    norm = jload(R3 / "normalization_study.json")  # normalization study
     fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2), gridspec_kw={"width_ratios": [1.5, 1]})
     rows = []
     for i, (lt, f) in enumerate(norm["forks"].items()):
@@ -262,7 +262,7 @@ def task3():
         lc = f["length_conditioned"]
         rows.append({"loss_type": lt, **lc, **{f"eval_{k}": f["eval"][k] for k in ["reward_mean", "reward_se", "kl_per_sequence", "length_mean", "eos_rate"]}})
     axes[0].set_xlabel("completion length (tokens)"); axes[0].set_ylabel("|A| × tokens / normalizer"); axes[0].set_title("per-completion gradient weight"); axes[0].legend(fontsize=6)
-    lts = [r["loss_type"] for r in rows]
+    lts = [r["loss_type"] for r in rows]  # weight share bars
     xs = np.arange(len(lts)); w = 0.38
     for j, (key, lab) in enumerate([("weight_share_short", "short half"), ("weight_share_long", "long half")]):
         vals = [r[key] for r in rows]
@@ -273,12 +273,12 @@ def task3():
     fig.tight_layout()
     save(fig, "f3_normalization")
     table(pd.DataFrame(rows), "t3_normalization")
-    rq = jload(R3 / "rq_support.json")
+    rq = jload(R3 / "rq_support.json")  # instability table
     if rq:
         table(pd.DataFrame([{"run": k, **v} for k, v in rq["rq3_instability"].items()]), "t3_instability")
 
 
-def task4():
+def task4():  # safety figures and tables
     s = jload(R4 / "safety_summary.json")
     if not s:
         return
@@ -286,7 +286,7 @@ def task4():
     keys = ["safe_answer_rate", "safe_over_refusal_rate", "safe_any_refusal_rate", "unsafe_compliance_rate", "unsafe_any_answer_rate",
             "unsafe_justified_refusal_rate", "ambiguous_rate", "judge_class_mismatch_rate", "mean_response_tokens", "std_response_tokens"]
     table(pd.DataFrame([{"policy": p, **{k: s["policies"][p][k] for k in keys}} for p in pol]), "t4_safety_rates")
-    metrics = [("safe_answer_rate", "safe: answered"), ("safe_any_refusal_rate", "safe: refused (any)"),
+    metrics = [("safe_answer_rate", "safe: answered"), ("safe_any_refusal_rate", "safe: refused (any)"),  # rate bars per policy
                ("unsafe_justified_refusal_rate", "unsafe: refused"), ("unsafe_any_answer_rate", "unsafe: answered (any)")]
     fig, ax = plt.subplots(figsize=(7.0, 2.1))
     xs = np.arange(len(metrics)); w = 0.2
@@ -298,12 +298,12 @@ def task4():
     fig.tight_layout()
     save(fig, "f4_safety_rates")
 
-    cat = pd.read_csv(R4 / "category_labels.csv")
+    cat = pd.read_csv(R4 / "category_labels.csv")  # label counts per category
     safe = cat[cat["benchmark_class"] == "SAFE"].copy()
     safe["refusal"] = (safe["JUSTIFIED_REFUSAL"] + safe["OVER_REFUSAL"]) / safe[["SAFE_ANSWER", "JUSTIFIED_REFUSAL", "UNSAFE_COMPLIANCE", "OVER_REFUSAL", "AMBIGUOUS"]].sum(axis=1)
     piv = safe.pivot(index="type", columns="policy", values="refusal")[pol]
     table(piv.reset_index(), "t4_safe_category_refusal")
-    fig, ax = plt.subplots(figsize=(4.2, 2.8))
+    fig, ax = plt.subplots(figsize=(4.2, 2.8))  # refusal heatmap
     im = ax.imshow(piv.values, cmap="Blues", vmin=0, vmax=1, aspect="auto")  # single hue light to dark
     ax.set_xticks(range(len(pol))); ax.set_xticklabels([p.upper() for p in pol]); ax.set_yticks(range(len(piv))); ax.set_yticklabels(piv.index, fontsize=6.5)
     for y in range(piv.shape[0]):
@@ -314,7 +314,7 @@ def task4():
     fig.colorbar(im, ax=ax, fraction=0.04)
     fig.tight_layout()
     save(fig, "f4_safe_category_refusal")
-    labs = ["SAFE_ANSWER", "JUSTIFIED_REFUSAL", "UNSAFE_COMPLIANCE", "OVER_REFUSAL", "AMBIGUOUS"]
+    labs = ["SAFE_ANSWER", "JUSTIFIED_REFUSAL", "UNSAFE_COMPLIANCE", "OVER_REFUSAL", "AMBIGUOUS"]  # full label mix per category
     full = cat.copy()
     full["n"] = full[labs].sum(axis=1)
     for l in labs:
@@ -325,7 +325,7 @@ def task4():
     table(full[["policy", "benchmark_class", "type", "n"] + labs], "t4_category_labels")
     types = list(full[full["policy"] == pol[0]]["type"])
     lab_col = [SERIES[0], SERIES[2], SERIES[1], SERIES[3], NEUTRAL]
-    fig, axes = plt.subplots(1, len(pol), figsize=(7.0, 3.5), sharey=True)
+    fig, axes = plt.subplots(1, len(pol), figsize=(7.0, 3.5), sharey=True)  # one stacked panel per policy
     for ax, p_ in zip(axes, pol):
         d = full[full["policy"] == p_].set_index("type").loc[types]
         left = np.zeros(len(types))
@@ -340,20 +340,20 @@ def task4():
     fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, 0.0), ncol=5, fontsize=6.5)
     fig.tight_layout()
     save(fig, "f4_category_labels")
-    a = s.get("manual_audit")
+    a = s.get("manual_audit")  # manual audit tables
     if a and a.get("labeled_rows"):
         table(pd.DataFrame([{"labeled_rows": a["labeled_rows"], "agreement": a["agreement"], "cohen_kappa": a["cohen_kappa"],
                              "ai_ambiguous": a["ai_ambiguous_rate_on_audit"], "manual_ambiguous": a["manual_ambiguous_rate"]}]), "t4_audit_agreement")
         table(pd.DataFrame(a["confusion_manual_rows_ai_cols"]).T.reset_index().rename(columns={"index": "manual \\ ai"}), "t4_audit_confusion", floatfmt=0)
 
 
-def task5():
+def task5():  # math feedback figures and tables
     comp = jload(R5 / "feedback_comparison.json")
     gsm, tr = jload(R5 / "gsm_eval.json"), jload(R5 / "transfer_eval.json")
     if not comp:
         return
     rows = []
-    for ds, d in [("GSM8K", gsm), ("SVAMP", tr)]:
+    for ds, d in [("GSM8K", gsm), ("SVAMP", tr)]:  # one row per dataset and policy
         for p, e in d["policies"].items():
             n = d["examples"]
             rows.append({"dataset": ds, "policy": p, "exact_acc": e["exact_accuracy"], "acc_se": math.sqrt(e["exact_accuracy"] * (1 - e["exact_accuracy"]) / n),
@@ -369,14 +369,14 @@ def task5():
     df.insert(df.columns.get_loc("win_vs_sft") + 1, "win_drop_vs_gsm8k",
               [gsm_ref.loc[p_, "win_vs_sft"] - w if t and p_ != "sft" else np.nan for p_, w, t in zip(df["policy"], df["win_vs_sft"], is_tr)])
     table(df, "t5_math_eval")
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2))
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2))  # accuracy and failure type figure
     pols = ["sft", "rlvr", "rlaif"]
     xs = np.arange(2); w = 0.26
     for i, p in enumerate(pols):
         d = df[df["policy"] == p]
         axes[0].bar(xs + (i - 1) * w, d["exact_acc"], width=w - 0.02, yerr=d["acc_se"], capsize=2, color=SERIES[i], label=p.upper())
     axes[0].set_xticks(xs); axes[0].set_xticklabels(["GSM8K (300)", "SVAMP (100)"]); axes[0].set_title("exact final-answer accuracy"); axes[0].legend(fontsize=6); axes[0].grid(axis="x", visible=False)
-    labels = [f"{p.upper()}\n{ds}" for ds in ["GSM8K", "SVAMP"] for p in pols]
+    labels = [f"{p.upper()}\n{ds}" for ds in ["GSM8K", "SVAMP"] for p in pols]  # failure type bars
     left = np.zeros(len(labels))
     for j, (key, lab, col) in enumerate([("wrong_number", "wrong number", SERIES[1]), ("no_final_answer", "no #### answer", SERIES[3]), ("cut_off_at_limit", "cut off", NEUTRAL)]):
         vals = np.array([df[(df["policy"] == p) & (df["dataset"] == ds)][key].iloc[0] / (300 if ds == "GSM8K" else 100) for ds in ["GSM8K", "SVAMP"] for p in pols])
@@ -386,12 +386,12 @@ def task5():
     fig.tight_layout()
     save(fig, "f5_math_accuracy")
 
-    diag = comp["diagnostic"]["per_variant"]
+    diag = comp["diagnostic"]["per_variant"]  # perturbation diagnostics
     variants = list(diag)
     short = {"corrupt_reasoning_correct_final": "corrupt reasoning,\ncorrect final", "good_reasoning_wrong_final": "good reasoning,\nwrong final",
              "persuasive_filler_correct": "persuasive filler", "gold_distractor_wrong_final": "gold distractor,\nwrong final"}
     table(pd.DataFrame([{"variant": v, "mechanism": m, **diag[v][m]} for v in variants for m in ["verifier", "judge"]]), "t5_diagnostics")
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2), sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.2), sharey=True)  # verifier and judge panels
     for ax, mech in zip(axes, ["verifier", "judge"]):
         left = np.zeros(len(variants))
         for key, lab, col in [("better_rate", "prefers clean", SERIES[0]), ("tie_rate", "tie", NEUTRAL), ("wrong_preference_rate", "prefers perturbed", SERIES[1])]:
@@ -412,7 +412,7 @@ def task5():
                             for k, v in audit.items()]), "t5_judge_audit", floatfmt=0)
 
 
-def setup_tables():
+def setup_tables():  # setup table per task
     dpo, ppo, grpo, fb = (load_yaml(f"configs/{n}.yaml") for n in ["dpo", "ppo", "grpo", "feedback"])
     lora = dpo["lora"]
     kept = lambda name: jload(R1 / f"filtered_{name}.json")  # rows kept after the prompt length rule
@@ -480,7 +480,7 @@ def setup_tables():
         table(pd.DataFrame(rows, columns=["setting", "value"]), name)
 
 
-def main():
+def main():  # build every figure and table
     FIG.mkdir(parents=True, exist_ok=True)
     TAB.mkdir(parents=True, exist_ok=True)
     for step in (setup_tables, task1, task2, task3, task4, task5):  # each task draws only what exists
