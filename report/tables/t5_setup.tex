@@ -1,0 +1,12 @@
+\begin{tabular}{lp{0.70\linewidth}}
+\toprule
+Setting & Value \\
+\midrule
+Policies & SFT (base), RLVR and RLAIF (supplied adapters) \\
+Data & GSM8K eval 300, SVAMP transfer 100, controlled diagnostics 80 pairs (20 problems $\times$ 4 perturbation variants) \\
+Decoding & greedy, 512 new tokens \\
+Verifier & numeric match (commas removed) of the number after the last \#\#\#\# marker \\
+AI judge & Qwen/Qwen2.5-3B-Instruct, pairwise, greedy, 4 tokens, A/B order set by hash \\
+Win rate & win 1, tie 0.5, loss 0, each policy vs SFT on the same problem \\
+\bottomrule
+\end{tabular}

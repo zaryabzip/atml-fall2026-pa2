@@ -1,0 +1,13 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lcccccccc}
+\toprule
+ & & \multicolumn{3}{c}{Rollout waste} & \multicolumn{4}{c}{Gradient} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-9}
+Run & Updates & Masked answers & Tokens generated & Share used in loss & Mean norm & CV & Corr. with reward SD & Corr. with masked \\
+\midrule
+Standard & 20 & 0.238 (19/80) & 22,325 & 0.564 & 0.291 & 0.99 & $-0.37$ & $-0.43$ \\
+Standard fork & 8 & 0.344 (11/32) & 8,317 & 0.323 & 0.288 & 0.85 & $-0.90$ & $-0.81$ \\
+Dr.~GRPO fork & 8 & 0.344 (11/32) & 8,140 & 0.308 & 0.048 & 0.98 & $+0.17$ & $-0.22$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

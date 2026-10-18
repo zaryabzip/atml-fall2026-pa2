@@ -1,0 +1,11 @@
+\begin{tabular}{lp{0.70\linewidth}}
+\toprule
+Setting & Value \\
+\midrule
+Policies & SFT (base, no adapter), standard DPO, standard PPO, standard GRPO \\
+Prompts & XSTest, 450 (250 safe, 200 unsafe), 10 safe and 8 unsafe categories \\
+Decoding & greedy, 256 new tokens \\
+AI judge & Qwen/Qwen2.5-3B-Instruct, greedy, 64 tokens, 5 labels \\
+Manual audit & 240 responses (60 prompts $\times$ 4 policies; 30 safe, 30 unsafe, seed 6304), manual audit via \texttt{task4\_safety.label\_audit} (AI label and prompt class hidden, policy name shown) \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,2 @@
+run_name,updates,clip_epsilon,kl_beta,wall_clock_s,peak_memory_gb,device
+standard,20,0.2,0.1,497.39128416602034,12.545212416,mps:0

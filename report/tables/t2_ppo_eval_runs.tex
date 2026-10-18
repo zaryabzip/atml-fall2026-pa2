@@ -1,0 +1,13 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccccc}
+\toprule
+Run & Reward & Seq.\ KL & Entropy & Length (tokens) & Cut off \\
+\midrule
+Midpoint (start) & $1.485 \pm 0.105$ & 0.003 & 0.831 & $314 \pm 254$ & 0.085 (17) \\
+Standard (20 updates) & $1.483 \pm 0.108$ & $-0.008$ & 0.838 & $316 \pm 252$ & 0.075 (15) \\
+$\epsilon$ forks (all three identical) & $1.475 \pm 0.104$ & $-0.012$ & 0.835 & $311 \pm 250$ & 0.080 (16) \\
+$\beta_{\mathrm{KL}} = 0$ & $1.483 \pm 0.104$ & 0.000 & 0.834 & $313 \pm 254$ & 0.080 (16) \\
+$\beta_{\mathrm{KL}} = 0.20$ & $1.510 \pm 0.102$ & $-0.010$ & 0.833 & $307 \pm 248$ & 0.070 (14) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

@@ -1,0 +1,17 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lllccccccc}
+\toprule
+ & & & \multicolumn{4}{c}{Verifier outcome (share of answers, sums to 1)} & \multicolumn{3}{c}{Judge vs.\ SFT} \\
+\cmidrule(lr){4-7} \cmidrule(lr){8-10}
+Data & Policy & Tokens & Correct & No \texttt{\#\#\#\#} & Wrong number & Cut off & Win rate & Agrees w/ verifier & Decisive on ties \\
+\midrule
+GSM8K & SFT & 275 & $0.297 \pm 0.026$ (89) & 0.607 (182) & 0.073 (22) & 0.023 (7) & -- & -- & -- \\
+($n = 300$) & RLVR & 275 & $0.300 \pm 0.026$ (90) & 0.603 (181) & 0.073 (22) & 0.023 (7) & 0.492 & 0.230 & 219 / 287 \\
+ & RLAIF & 274 & $0.277 \pm 0.026$ (83) & 0.620 (186) & 0.080 (24) & 0.023 (7) & 0.453 & 0.237 & 223 / 292 \\
+\midrule
+SVAMP & SFT & 164 & $0.440 \pm 0.050$ (44) & 0.430 (43) & 0.130 (13) & 0.000 (0) & -- & -- & -- \\
+($n = 100$) & RLVR & 164 & $0.470 \pm 0.050$ (47) & 0.400 (40) & 0.130 (13) & 0.000 (0) & 0.575 & 0.130 & 86 / 97 \\
+ & RLAIF & 163 & $0.430 \pm 0.050$ (43) & 0.440 (44) & 0.130 (13) & 0.000 (0) & 0.540 & 0.120 & 86 / 97 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

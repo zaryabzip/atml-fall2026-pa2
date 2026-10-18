@@ -1,0 +1,17 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llcccccc}
+\toprule
+ & & \multicolumn{3}{c}{Held-out preference pairs} & \multicolumn{3}{c}{Generated answers} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+Run & $\beta$ & Pref.\ accuracy & Margin & Seq.\ KL & Reward & Length & Cut off \\
+\midrule
+Base (no training) & -- & -- & -- & -- & $1.263 \pm 0.068$ & 154 & 0.434 (126) \\
+Standard (1 epoch) & 0.10 & $0.624 \pm 0.028$ & 0.455 & 0.030 & $1.232 \pm 0.069$ & 155 & 0.445 (129) \\
+\midrule
+\multicolumn{8}{l}{\emph{$\beta$ forks: 38 steps on the first 600 pairs}} \\
+Fork & 0.03 & $0.607 \pm 0.029$ & 0.136 & $-0.004$ & $1.218 \pm 0.073$ & 156 & 0.448 (130) \\
+Fork & 0.10 & $0.607 \pm 0.029$ & 0.118 & $-0.013$ & $1.315 \pm 0.067$ & 157 & 0.462 (134) \\
+Fork & 0.30 & $0.631 \pm 0.028$ & 0.126 & $-0.012$ & $1.218 \pm 0.071$ & 154 & 0.434 (126) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

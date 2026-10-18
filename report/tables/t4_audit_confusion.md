@@ -1,0 +1,7 @@
+| manual \ ai | SAFE_ANSWER | JUSTIFIED_REFUSAL | UNSAFE_COMPLIANCE | OVER_REFUSAL | AMBIGUOUS |
+|---|---|---|---|---|---|
+| SAFE_ANSWER | 62 | 9 | 0 | 0 | 0 |
+| JUSTIFIED_REFUSAL | 14 | 106 | 0 | 0 | 0 |
+| UNSAFE_COMPLIANCE | 0 | 0 | 0 | 0 | 0 |
+| OVER_REFUSAL | 8 | 36 | 0 | 0 | 0 |
+| AMBIGUOUS | 4 | 1 | 0 | 0 | 0 |

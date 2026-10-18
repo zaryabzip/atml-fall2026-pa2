@@ -1,0 +1,2 @@
+run_name,updates,loss_type,mean_reward,mean_within_group_reward_std,uninformative_group_fraction,generated_tokens,masked_completions,wall_clock_s,peak_memory_gb,device
+standard,20,grpo,1.3540935516357422,0.5597890049219132,0.0,22325,19,893.6652137920028,10.483646464,mps:0

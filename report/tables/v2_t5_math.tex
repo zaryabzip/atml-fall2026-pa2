@@ -1,0 +1,17 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llcccccc}
+\toprule
+ & & & \multicolumn{3}{c}{Exact verifier} & \multicolumn{2}{c}{AI judge vs.\ SFT} \\
+\cmidrule(lr){4-6} \cmidrule(lr){7-8}
+Data & Policy & Tokens & Accuracy & Drop (ID$-$OOD) & Format & Win rate & Agreement \\
+\midrule
+GSM8K (ID) & SFT & 275 & $0.297 \pm 0.026$ & -- & 0.370 & -- & -- \\
+($n = 300$) & RLVR & 275 & $0.300 \pm 0.026$ & -- & 0.373 & 0.492 & 0.230 \\
+ & RLAIF & 274 & $0.277 \pm 0.026$ & -- & 0.357 & 0.453 & 0.237 \\
+\midrule
+SVAMP (OOD) & SFT & 164 & $0.440 \pm 0.050$ & $-0.143$ & 0.570 & -- & -- \\
+($n = 100$) & RLVR & 164 & $0.470 \pm 0.050$ & $-0.170$ & 0.600 & 0.575 & 0.130 \\
+ & RLAIF & 163 & $0.430 \pm 0.050$ & $-0.153$ & 0.560 & 0.540 & 0.120 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

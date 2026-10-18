@@ -1,0 +1,10 @@
+| set | pairs | a_wins | b_wins | true_ties | unparseable | multi_label | picked_first_shown | matches_cached_result |
+|---|---|---|---|---|---|---|---|---|
+| diagnostic_corrupt_reasoning_correct_final | 20 | 2 | 6 | 12 | 0 | 8 | 8 | 20 |
+| diagnostic_gold_distractor_wrong_final | 20 | 0 | 0 | 20 | 0 | 0 | 0 | 20 |
+| diagnostic_good_reasoning_wrong_final | 20 | 3 | 0 | 17 | 0 | 1 | 3 | 20 |
+| diagnostic_persuasive_filler_correct | 20 | 2 | 11 | 7 | 0 | 12 | 13 | 20 |
+| gsm_rlaif_vs_sft | 300 | 99 | 127 | 74 | 0 | 219 | 226 | 300 |
+| gsm_rlvr_vs_sft | 300 | 111 | 116 | 73 | 0 | 215 | 226 | 300 |
+| transfer_rlaif_vs_sft | 100 | 48 | 40 | 12 | 0 | 85 | 88 | 100 |
+| transfer_rlvr_vs_sft | 100 | 52 | 37 | 11 | 0 | 87 | 89 | 100 |

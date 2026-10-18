@@ -1,0 +1,4 @@
+score,verifier,judge
+S_reason,0.0,0.1
+S_outcome,1.0,0.15
+S_outcome_incl_distractor,1.0,0.075

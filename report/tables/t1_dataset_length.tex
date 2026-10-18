@@ -1,0 +1,13 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lcccccc}
+\toprule
+ & & & \multicolumn{3}{c}{Length stratum (share of pairs)} & Chosen $-$ rejected \\
+\cmidrule(lr){4-6} \cmidrule(lr){7-7}
+Split & Pairs & Chosen longer & Chosen longer & Similar & Rejected longer & tokens (mean / median) \\
+\midrule
+Standard train & 1,446 & 0.571 & 0.521 & 0.118 & 0.361 & +45.9 / +20.0 \\
+Held-out eval & 290 & 0.531 & 0.483 & 0.124 & 0.393 & +29.0 / +5.0 \\
+Length-balanced train & 1,442 & 0.490 & 0.331 & 0.334 & 0.334 & +4.7 / 0.0 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

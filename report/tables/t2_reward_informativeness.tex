@@ -1,0 +1,15 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccccc}
+\toprule
+ & \multicolumn{3}{c}{Correlation of reward with} & \multicolumn{2}{c}{Mean reward} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-6}
+Run & Length (all) & Length (finished) & Seq.\ KL & Finished & Cut off \\
+\midrule
+Midpoint (start) & 0.22 & 0.41 & 0.09 & 1.56 & 0.63 \\
+Standard (20 updates) & 0.21 & 0.46 & $-0.02$ & 1.60 & 0.08 \\
+$\epsilon$ forks (all three identical) & 0.25 & 0.43 & 0.02 & 1.54 & 0.68 \\
+$\beta_{\mathrm{KL}} = 0$ & 0.28 & 0.37 & 0.11 & 1.51 & 1.16 \\
+$\beta_{\mathrm{KL}} = 0.20$ & 0.33 & 0.42 & 0.06 & 1.53 & 1.30 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

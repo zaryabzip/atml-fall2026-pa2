@@ -1,0 +1,14 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccccc}
+\toprule
+ & \multicolumn{2}{c}{Safe prompts ($n = 250$)} & \multicolumn{2}{c}{Unsafe prompts ($n = 200$)} & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+Policy & Answered & Refused & Refused & Answered & Length (tokens) \\
+\midrule
+SFT & 0.708 (177) & 0.264 (66) & 0.815 (163) & 0.180 (36) & $107 \pm 80$ \\
+DPO & 0.672 (168) & 0.312 (78) & 0.815 (163) & 0.185 (37) & $109 \pm 82$ \\
+PPO & 0.696 (174) & 0.280 (70) & 0.810 (162) & 0.185 (37) & $108 \pm 80$ \\
+GRPO & 0.704 (176) & 0.272 (68) & 0.810 (162) & 0.185 (37) & $108 \pm 81$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

@@ -1,0 +1,16 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{Exact verifier} & \multicolumn{3}{c}{AI judge} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Edited variant (vs.\ clean) & Better & Tie & Wrong & Better & Tie & Wrong \\
+\midrule
+Corrupt reasoning, right final & 0.00 & 1.00 & 0.00 & 0.10 & 0.60 & 0.30 \\
+Good reasoning, wrong final & 1.00 & 0.00 & 0.00 & 0.15 & 0.85 & 0.00 \\
+Persuasive filler, right final & 0.00 & 1.00 & 0.00 & 0.10 & 0.35 & 0.55 \\
+Gold distractor, wrong final & 1.00 & 0.00 & 0.00 & 0.00 & 1.00 & 0.00 \\
+\midrule
+$S_{\mathrm{reason}}$ / $S_{\mathrm{outcome}}$ & \multicolumn{3}{c}{0.00 / 1.00} & \multicolumn{3}{c}{0.10 / 0.15} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

@@ -1,0 +1,80 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lllllllll}
+\toprule
+Policy & Class & Category & $n$ & Safe Answer & Justified Refusal & Unsafe Compliance & Over-Refusal & Ambiguous \\
+\midrule
+sft & SAFE & definitions & 25 & 0.800 & 0.160 & 0.000 & 0.000 & 0.040 \\
+sft & SAFE & figurative\_language & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+sft & SAFE & historical\_events & 25 & 0.720 & 0.280 & 0.000 & 0.000 & 0.000 \\
+sft & SAFE & homonyms & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+sft & SAFE & nons\_group\_real\_discr & 25 & 0.640 & 0.240 & 0.000 & 0.000 & 0.120 \\
+sft & SAFE & privacy\_fictional & 25 & 0.720 & 0.280 & 0.000 & 0.000 & 0.000 \\
+sft & SAFE & privacy\_public & 25 & 0.920 & 0.080 & 0.000 & 0.000 & 0.000 \\
+sft & SAFE & real\_group\_nons\_discr & 25 & 0.880 & 0.080 & 0.000 & 0.000 & 0.040 \\
+sft & SAFE & safe\_contexts & 25 & 0.240 & 0.760 & 0.000 & 0.000 & 0.000 \\
+sft & SAFE & safe\_targets & 25 & 0.480 & 0.440 & 0.080 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_definitions & 25 & 0.080 & 0.920 & 0.000 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_discr & 25 & 0.400 & 0.560 & 0.000 & 0.000 & 0.040 \\
+sft & UNSAFE & contrast\_figurative\_language & 25 & 0.040 & 0.960 & 0.000 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_historical\_events & 25 & 0.040 & 0.960 & 0.000 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_homonyms & 25 & 0.200 & 0.800 & 0.000 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_privacy & 25 & 0.520 & 0.480 & 0.000 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_safe\_contexts & 25 & 0.000 & 1.000 & 0.000 & 0.000 & 0.000 \\
+sft & UNSAFE & contrast\_safe\_targets & 25 & 0.160 & 0.840 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & definitions & 25 & 0.800 & 0.160 & 0.000 & 0.000 & 0.040 \\
+dpo & SAFE & figurative\_language & 25 & 0.880 & 0.120 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & historical\_events & 25 & 0.600 & 0.400 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & homonyms & 25 & 0.720 & 0.280 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & nons\_group\_real\_discr & 25 & 0.560 & 0.400 & 0.000 & 0.000 & 0.040 \\
+dpo & SAFE & privacy\_fictional & 25 & 0.680 & 0.320 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & privacy\_public & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & real\_group\_nons\_discr & 25 & 0.960 & 0.040 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & safe\_contexts & 25 & 0.200 & 0.800 & 0.000 & 0.000 & 0.000 \\
+dpo & SAFE & safe\_targets & 25 & 0.480 & 0.440 & 0.080 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_definitions & 25 & 0.040 & 0.960 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_discr & 25 & 0.480 & 0.520 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_figurative\_language & 25 & 0.120 & 0.880 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_historical\_events & 25 & 0.040 & 0.960 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_homonyms & 25 & 0.240 & 0.760 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_privacy & 25 & 0.440 & 0.560 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_safe\_contexts & 25 & 0.000 & 1.000 & 0.000 & 0.000 & 0.000 \\
+dpo & UNSAFE & contrast\_safe\_targets & 25 & 0.120 & 0.880 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & definitions & 25 & 0.800 & 0.160 & 0.000 & 0.000 & 0.040 \\
+ppo & SAFE & figurative\_language & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & historical\_events & 25 & 0.720 & 0.280 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & homonyms & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & nons\_group\_real\_discr & 25 & 0.600 & 0.320 & 0.000 & 0.000 & 0.080 \\
+ppo & SAFE & privacy\_fictional & 25 & 0.640 & 0.360 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & privacy\_public & 25 & 0.920 & 0.080 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & real\_group\_nons\_discr & 25 & 0.880 & 0.080 & 0.000 & 0.000 & 0.040 \\
+ppo & SAFE & safe\_contexts & 25 & 0.240 & 0.760 & 0.000 & 0.000 & 0.000 \\
+ppo & SAFE & safe\_targets & 25 & 0.480 & 0.440 & 0.080 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_definitions & 25 & 0.080 & 0.920 & 0.000 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_discr & 25 & 0.440 & 0.520 & 0.000 & 0.000 & 0.040 \\
+ppo & UNSAFE & contrast\_figurative\_language & 25 & 0.040 & 0.960 & 0.000 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_historical\_events & 25 & 0.080 & 0.920 & 0.000 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_homonyms & 25 & 0.200 & 0.800 & 0.000 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_privacy & 25 & 0.520 & 0.480 & 0.000 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_safe\_contexts & 25 & 0.000 & 1.000 & 0.000 & 0.000 & 0.000 \\
+ppo & UNSAFE & contrast\_safe\_targets & 25 & 0.120 & 0.880 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & definitions & 25 & 0.800 & 0.160 & 0.000 & 0.000 & 0.040 \\
+grpo & SAFE & figurative\_language & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & historical\_events & 25 & 0.720 & 0.280 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & homonyms & 25 & 0.840 & 0.160 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & nons\_group\_real\_discr & 25 & 0.600 & 0.320 & 0.000 & 0.000 & 0.080 \\
+grpo & SAFE & privacy\_fictional & 25 & 0.720 & 0.280 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & privacy\_public & 25 & 0.920 & 0.080 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & real\_group\_nons\_discr & 25 & 0.880 & 0.080 & 0.000 & 0.000 & 0.040 \\
+grpo & SAFE & safe\_contexts & 25 & 0.240 & 0.760 & 0.000 & 0.000 & 0.000 \\
+grpo & SAFE & safe\_targets & 25 & 0.480 & 0.440 & 0.080 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_definitions & 25 & 0.080 & 0.920 & 0.000 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_discr & 25 & 0.400 & 0.560 & 0.000 & 0.000 & 0.040 \\
+grpo & UNSAFE & contrast\_figurative\_language & 25 & 0.080 & 0.920 & 0.000 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_historical\_events & 25 & 0.080 & 0.920 & 0.000 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_homonyms & 25 & 0.200 & 0.800 & 0.000 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_privacy & 25 & 0.520 & 0.480 & 0.000 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_safe\_contexts & 25 & 0.000 & 1.000 & 0.000 & 0.000 & 0.000 \\
+grpo & UNSAFE & contrast\_safe\_targets & 25 & 0.120 & 0.880 & 0.000 & 0.000 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

@@ -1,0 +1,13 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccc}
+\toprule
+ & \multicolumn{2}{c}{Cached batch (off-policy, 8,814 tokens)} & Live forks (on-policy) \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-4}
+$\epsilon$ & Tokens clipped & Gradient removed & Tokens clipped \\
+\midrule
+0.05 & 10.63\% (937) & 5.26\% (464) & 0\% (0) \\
+0.20 & 0.85\% (75) & 0.47\% (41) & 0\% (0) \\
+0.50 & 0.56\% (49) & 0.33\% (29) & 0\% (0) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

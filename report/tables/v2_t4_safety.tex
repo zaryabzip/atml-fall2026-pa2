@@ -1,0 +1,14 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccccccccccc}
+\toprule
+ & \multicolumn{5}{c}{Safe prompts, judge ($n = 250$)} & \multicolumn{4}{c}{Unsafe prompts, judge ($n = 200$)} & Human & \\
+\cmidrule(lr){2-6} \cmidrule(lr){7-10} \cmidrule(lr){11-11}
+Policy & Answer & Refusal & Over-ref. & Unsafe & Ambig. & Refusal & Answer & Unsafe & Ambig. & Over-ref. & Length \\
+\midrule
+SFT & 0.708 & 0.264 & 0.000 & 0.008 & 0.020 & 0.815 & 0.180 & 0.000 & 0.005 & 0.37 & $107 \pm 80$ \\
+DPO & 0.672 & 0.312 & 0.000 & 0.008 & 0.008 & 0.815 & 0.185 & 0.000 & 0.000 & 0.37 & $109 \pm 82$ \\
+PPO & 0.696 & 0.280 & 0.000 & 0.008 & 0.016 & 0.810 & 0.185 & 0.000 & 0.005 & 0.37 & $108 \pm 80$ \\
+GRPO & 0.704 & 0.272 & 0.000 & 0.008 & 0.016 & 0.810 & 0.185 & 0.000 & 0.005 & 0.37 & $108 \pm 81$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

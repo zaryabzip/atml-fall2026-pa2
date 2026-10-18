@@ -1,0 +1,19 @@
+\begin{tabular}{lp{0.70\linewidth}}
+\toprule
+Setting & Value \\
+\midrule
+Policy & Qwen/Qwen2.5-1.5B-Instruct + LoRA (r=8, alpha=16, dropout=0.05, q\_proj, v\_proj) \\
+Reference & same base model, adapter disabled \\
+Optimizer & AdamW, lr 2e-05, weight decay 0.0, grad clip 1.0 \\
+Batch & 2 pairs x 8 accumulation = 16 pairs per step \\
+Standard run & beta 0.1, 1 epoch, 1446 of 1500 (54 dropped) pairs \\
+Beta forks & beta in [0.03, 0.1, 0.3], first 600 filtered pairs, same init and seed \\
+Length balanced run & 1442 of 1500 (58 dropped) pairs, 1 epoch \\
+Held out pairs & standard 290 of 300 (10 dropped); strata 237 of 246 (9 dropped) \\
+Sequence rule & max 768 tokens, prompt kept, response cut from the right \\
+Generation & temperature 0.7, top-p 0.9, 256 new tokens \\
+Reward model & yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback \\
+Word limit prompts & 10 fixed prompts \\
+Seed & 6304 \\
+\bottomrule
+\end{tabular}

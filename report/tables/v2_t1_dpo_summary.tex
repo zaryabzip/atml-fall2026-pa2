@@ -1,0 +1,16 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llccccccc}
+\toprule
+ & & & \multicolumn{3}{c}{Held-out preference pairs ($n = 290$)} & \multicolumn{3}{c}{Generated answers ($n = 290$)} \\
+\cmidrule(lr){4-6} \cmidrule(lr){7-9}
+Run & $\beta$ & Steps & DPO loss & Pref.\ accuracy & Seq.\ KL & Reward & Length & Cut off \\
+\midrule
+Base (no training) & -- & 0 & 0.693 & -- & 0.000 & $1.263 \pm 0.068$ & $154 \pm 104$ & 0.434 \\
+Standard & 0.10 & 91 & 0.674 & $0.624 \pm 0.028$ & 0.030 & $1.232 \pm 0.069$ & $155 \pm 104$ & 0.445 \\
+\midrule
+$\beta$ fork & 0.03 & 38 & 0.691 & $0.607 \pm 0.029$ & $-0.004$ & $1.218 \pm 0.073$ & $156 \pm 105$ & 0.448 \\
+$\beta$ fork & 0.10 & 38 & 0.688 & $0.607 \pm 0.029$ & $-0.013$ & $1.315 \pm 0.067$ & $157 \pm 104$ & 0.462 \\
+$\beta$ fork & 0.30 & 38 & 0.678 & $0.631 \pm 0.028$ & $-0.012$ & $1.218 \pm 0.071$ & $154 \pm 105$ & 0.434 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

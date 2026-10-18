@@ -1,0 +1,15 @@
+\begin{tabular}{lp{0.70\linewidth}}
+\toprule
+Setting & Value \\
+\midrule
+Start & supplied GRPO midpoint policy LoRA \\
+Updates & standard 20, forks 8, 1 prompt per update, 1 policy epoch \\
+Group & K = 4 completions per prompt, advantages normalized within the group \\
+Optimizer & AdamW, lr 5e-06, grad clip 1.0 \\
+Objective & clipped ratio, epsilon 0.2, KL penalty beta 0.1 (k3 estimator) \\
+Lengths & prompt 256, completion 512, completions at the cap masked, eval 768 \\
+Normalization study & grpo (divide by own length) vs dr\_grpo (divide by 512), same prompts, seed, budget \\
+Group size study & K in [2, 4, 8] from the supplied cache, 24 prompts x 8 = 192 completions \\
+Prompts & 1200 train pool (seeded shuffle), 200 eval \\
+\bottomrule
+\end{tabular}

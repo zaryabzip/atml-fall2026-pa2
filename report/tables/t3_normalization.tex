@@ -1,0 +1,12 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{Training (21 kept answers)} & \multicolumn{4}{c}{Held-out ($n = 200$)} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-7}
+Normalizer & Weight on long half & Corr(length, weight) & Reward & Seq.\ KL & Length & Cut off \\
+\midrule
+Standard ($1/T_k$) & 0.49 & 0.05 & $1.484 \pm 0.106$ & 0.024 & 308 & 0.060 (12) \\
+Dr.~GRPO ($1/512$) & 0.87 & 0.92 & $1.521 \pm 0.104$ & 0.046 & 316 & 0.065 (13) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}

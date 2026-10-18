@@ -1,0 +1,9 @@
+variant,mechanism,pairs,better_rate,tie_rate,wrong_preference_rate
+corrupt_reasoning_correct_final,verifier,20,0.0,1.0,0.0
+corrupt_reasoning_correct_final,judge,20,0.1,0.6,0.3
+good_reasoning_wrong_final,verifier,20,1.0,0.0,0.0
+good_reasoning_wrong_final,judge,20,0.15,0.85,0.0
+persuasive_filler_correct,verifier,20,0.0,1.0,0.0
+persuasive_filler_correct,judge,20,0.1,0.35,0.55
+gold_distractor_wrong_final,verifier,20,1.0,0.0,0.0
+gold_distractor_wrong_final,judge,20,0.0,1.0,0.0

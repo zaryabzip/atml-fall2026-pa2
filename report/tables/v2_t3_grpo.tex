@@ -1,0 +1,15 @@
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lccccccc}
+\toprule
+ & \multicolumn{2}{c}{Gradient weight} & \multicolumn{5}{c}{Held-out ($n = 200$)} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-8}
+Run (updates) & Long half & Corr.\ length & Reward & Seq.\ KL & Entropy & Length & Cut off \\
+\midrule
+Midpoint (start) & -- & -- & $1.454 \pm 0.108$ & 0.019 & 0.832 & $313 \pm 254$ & 0.085 \\
+Standard (20 updates) & -- & -- & $1.461 \pm 0.108$ & 0.043 & 0.832 & $311 \pm 250$ & 0.075 \\
+\midrule
+Standard fork, $1/T_k$ (8) & 0.49 & 0.05 & $1.484 \pm 0.106$ & 0.024 & 0.840 & $308 \pm 247$ & 0.060 \\
+Dr.~GRPO fork, $1/512$ (8) & 0.87 & 0.92 & $1.521 \pm 0.104$ & 0.046 & 0.838 & $316 \pm 251$ & 0.065 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
