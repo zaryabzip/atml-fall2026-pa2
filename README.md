@@ -31,6 +31,7 @@ python -m task1_dpo.ablate_beta --config configs/dpo.yaml                       
 python -m task1_dpo.analyze_length --config configs/dpo.yaml                       # length-balanced model, strata, word limits
 python -m task1_dpo.analyze_length --config configs/dpo.yaml --base-word-limit     # word-limit prompts on the base policy
 python -m task1_dpo.rq_analysis --config configs/dpo.yaml                          # research-question tables from saved results
+python -m task1_dpo.token_shift --config configs/dpo.yaml                          # per-token log-ratio shifts on the held-out pairs
 # or: scripts/run_task1.sh
 ```
 
@@ -66,6 +67,7 @@ python -m task4_safety.make_audit_sheet --config configs/feedback.yaml     # fix
 python -m task4_safety.judge_responses --config configs/feedback.yaml      # fixed AI judge labels
 # fill results/task4_safety/manual_audit_sheet.csv by hand, without looking at AI labels
 python -m task4_safety.evaluate_safety --config configs/feedback.yaml      # rates, categories, manual-vs-AI agreement
+python -m task4_safety.text_checks                                         # refusal phrase scan on safe answers and DPO pairs
 # or: scripts/run_task4.sh
 ```
 
