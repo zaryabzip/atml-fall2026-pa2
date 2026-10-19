@@ -120,4 +120,5 @@ Compute for the standard continuations on Apple MPS: PPO 20 updates in 8.3 min (
 - **Libraries:** PyTorch, Hugging Face Transformers, PEFT, NumPy, pandas, matplotlib.
 - **Models:** Qwen2.5 (Alibaba Cloud) and `yavuz-ai/qwen2.5-1.5b-rm-ultrafeedback`.
 - **Data:** UltraFeedback, XSTest, GSM8K and SVAMP, through the fixed course subsets.
+- **Coding assistance:** Claude Code was used for help in writing the code. I reviewed the code and am responsible for it.
 - No other external code was reused.
